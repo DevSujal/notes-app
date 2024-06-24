@@ -5,7 +5,6 @@ import "./index.css";
 import {
   Route,
   RouterProvider,
-  createBrowserRouter,
   createHashRouter,
   createRoutesFromChildren,
 } from "react-router-dom";
@@ -13,8 +12,7 @@ import { Home, Login, Signup } from "./pages";
 import { Provider } from "react-redux";
 import { store } from "./Store/store.js";
 import { Authenticated, NoteEditor } from "./components";
-import { render } from "react-dom";
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromChildren(
     <Route path="/" element={<App />}>
       <Route
