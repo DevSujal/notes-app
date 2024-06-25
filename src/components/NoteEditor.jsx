@@ -1,22 +1,26 @@
 import React, { useEffect, useId, useState } from "react";
 import Button from "./Button";
 import database from "../app write services/database.service";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { addNote } from "../Store/features/notesSlice";
 
 function NoteEditor() {
   const { url } = useParams();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const userData = useSelector((state) => state.authReducer.userData);
+  const notes = useSelector(state => state.noteReducer.notes)
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (url) {
-      database.getNote(url).then((data) => {
-        setTitle(data.title);
-        setContent(data.content);
-      });
+      const note = notes.filter((note) => (
+        note.$id === url
+      ))
+      console.log(note);
+      setTitle(note[0].title)
+      setContent(note[0].content)
     }
   }, []);
   const appendNote = () => {
@@ -26,7 +30,10 @@ function NoteEditor() {
         .then((data) => {
           if (data) {
             console.log("Note created successfully");
-            navigate("/");
+            database.getAllNotes(userData).then((data) => {
+              dispatch(addNote(data.documents));
+              navigate("/");
+            });
           }
         })
         .catch((err) => {
@@ -40,8 +47,11 @@ function NoteEditor() {
         .updataNote({ title, content, ...userData, url })
         .then((data) => {
           if (data) {
-            console.log("Note updated successfully");
-            navigate("/");
+            console.log("Note created successfully");
+            database.getAllNotes(userData).then((data) => {
+              dispatch(addNote(data.documents));
+              navigate("/");
+            });
           }
         })
         .catch((err) => {

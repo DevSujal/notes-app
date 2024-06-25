@@ -1,12 +1,8 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
-  data: [
-    {
-      $id: nanoid(),
-      title: "start your note journey",
-      content: "",
-    },
+  notes: [
+   
   ],
 };
 
@@ -15,13 +11,13 @@ const noteSlice = createSlice({
   initialState,
   reducers: {
     addNote: (state, action) => {
-      state.data.push(action.payload);
+      state.notes = action.payload
     },
     deleteNote: (state, action) => {
-      state.data = state.data.filter((note) => note.$id !== action.payload.$id);
+      state.notes = state.notes.filter((note) => note.$id !== action.payload.$id);
     },
     clearNotes: (state, action) => {
-      state.data = [
+      state.notes = [
         {
           $id: nanoid(),
           title: "start your note journey",
@@ -30,7 +26,7 @@ const noteSlice = createSlice({
       ];
     },
     updateNote: (state, action) => {
-      state.data = state.data.map((note) =>
+      state.notes = state.notes.map((note) =>
         note.$id === action.payload.$id
           ? {
               ...note,

@@ -4,21 +4,16 @@ import Note from "./Note";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 function Notes({ className, setSearch, search }) {
-  const [notes, setNotes] = useState([]);
   const userData = useSelector((state) => state.authReducer.userData);
-  useEffect(() => {
-    database.getAllNotes(userData).then((allNotes) => {
-      setNotes(allNotes.documents);
-    });
-  }, []);
+  const notes = useSelector(state => state.noteReducer.notes)
+
   return (
     <div className={`w-6/12 min-w-80 flex flex-col gap-3 ${className}`}>
       {notes.filter((note) => (
         note.title.includes(search) || note.content.includes(search)
       )).map((note) => (
-        <Link key={note.$id} className="w-full" to={`/edit-note/${note.$id}`}>
-          <Note content={note.content} title={note.title} />
-        </Link>
+
+          <Note key={note.$id} $id={note.$id} content={note.content} title={note.title} />
       ))}
     </div>
   );

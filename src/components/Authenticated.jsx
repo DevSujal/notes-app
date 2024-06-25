@@ -4,18 +4,24 @@ import { useNavigate } from "react-router-dom";
 import auth from "../app write services/auth.service";
 import { login } from "../Store/features/authSlice";
 import Loader from "./Loader";
+import database from "../app write services/database.service";
+import { addNote } from "../Store/features/notesSlice";
 
 function Authenticated({ children }) {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const status = useSelector((state) => state.authReducer.status);
   useEffect(() => {
     if (!status) {
       auth.getCurrentUser().then((user) => {
-        if(user) {
-          dispatch(login(user))
-        }
-        else{
+        if (user) {
+          dispatch(login(user));
+          database.getAllNotes(user).then((data) => {
+            if (data) {
+              dispatch(addNote(data.documents));
+            }
+          });
+        } else {
           navigate("/login");
         }
       });
