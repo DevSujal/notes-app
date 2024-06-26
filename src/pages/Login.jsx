@@ -4,7 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import auth from "../app write services/auth.service";
 import { useDispatch } from "react-redux";
-import { login } from "../Store/features/authSlice";
+import { login, logout } from "../Store/features/authSlice";
 
 function Login() {
   const { register, handleSubmit } = useForm();
@@ -18,9 +18,17 @@ function Login() {
           auth.getCurrentUser().then((currUser) => {
             if (currUser) {
               dispatch(login(currUser));
+              navigate("/");
+              database.getAllNotes(currUser).then((data) => {
+                if (data) {
+                  console.log(data);
+                  dispatch(addNote(data.documents));
+                }
+              });
             }
-            navigate("/");
-          });
+          }).catch((err) => {
+            dispatch(logout())
+          })
         }
       })
       .catch((err) => console.log(err));

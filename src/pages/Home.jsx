@@ -1,20 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Search from "../components/Search";
 import Notes from "../components/Notes";
-import Logout from "../components/Logout";
 import AddNotes from "../components/AddNotes";
+import { useDispatch, useSelector } from "react-redux";
+import auth from "../app write services/auth.service";
+import { login, logout } from "../Store/features/authSlice";
+import { addNote } from "../Store/features/notesSlice";
+import database from "../app write services/database.service";
 
 function Home() {
+  const status = useSelector((state) => state.authReducer.status);
+  const [search, setSearch] = useState("");
 
-  const [search, setSearch] = useState("")
-  return (
-    <div className="h-screen w-screen p-5 flex flex-col gap-3 items-center">
-      <Search setSearch = {setSearch} searchContent={search}/>
-      <Notes setSearch = {setSearch} search={search}/>
-      <AddNotes />
-      <Logout className="absolute left-6 bottom-6 font-bold py-2 rounded cursor-pointer hover:bg-blue-600"/>
-    </div>
-  );
+  useEffect(() => {
+    if(!status){
+      auth.getCurrentUser()
+      .then((user) => {
+        dispatch(login(user))
+        database.getAllNotes(user)
+        .then((data) => {
+          dispatch(addNote(data.documents))
+        }).catch((err) => {
+          dispatch(logout())
+        })
+      }).catch((err) => {
+        dispatch(logout())
+      })
+    }
+  }, [status])
+  const dispatch = useDispatch();
+  if (status) {
+    return (
+      <div className="w-full h-full p-5 flex flex-col gap-3 items-center">
+        <Search setSearch={setSearch} searchContent={search} />
+        <Notes search={search} />
+        <AddNotes />
+      </div>
+    );
+  } else {
+   return <div className="w-full h-full flex justify-center items-center">
+      <h1 className="text-white text-2xl text-center font-bold">Please Login To Use Our Services...</h1>
+    </div>;
+  }
 }
 
 export default Home;

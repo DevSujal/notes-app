@@ -4,7 +4,7 @@ import search from "../assets/search.jpg"
 function Search({className, setSearch, searchContent}) {
   return (
     <div className={`flex w-6/12 min-w-80 rounded text-white overflow-hidden ${className}`}>
-    <img src={search} alt="search img" width={50} className='object-cover' />
+    <span className='text-2xl p-2 bg-white'>🔍</span>
       <Input value = {searchContent} onChange = {(e) => setSearch(e.target.value)} placeholder = "Search anything..."className = "w-full text-black  rounded-none"/>
     </div>
   )

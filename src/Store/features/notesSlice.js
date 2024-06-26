@@ -24,20 +24,16 @@ const noteSlice = createSlice({
       });
     },
     clearNotes: (state, action) => {
-      state.notes = [
-        {
-          $id: nanoid(),
-          title: "start your note journey",
-          content: "",
-        },
-      ];
+      state.notes = [];
     },
     appendNote: (state, action) => {
-      const {title, content, $id} = action.payload
+      const { title, content, $id } = action.payload;
       const url = database.createUrlFromTitle(title);
       state.notes.push({
-        title,content, $id : url
-      })
+        title,
+        content,
+        $id: url,
+      });
       database
         .createNote({ title, content, $id })
         .then((data) => {

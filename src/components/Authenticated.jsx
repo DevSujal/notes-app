@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import auth from "../app write services/auth.service";
-import { login } from "../Store/features/authSlice";
+import { login, logout } from "../Store/features/authSlice";
 import Loader from "./Loader";
 import database from "../app write services/database.service";
 import { addNote } from "../Store/features/notesSlice";
@@ -24,7 +24,9 @@ function Authenticated({ children }) {
         } else {
           navigate("/login");
         }
-      });
+      }).catch((err) => {
+        dispatch(logout())
+      })
     }
   }, [status, navigate]);
   return !status ? <Loader /> : <div className="h-full">{children}</div>;

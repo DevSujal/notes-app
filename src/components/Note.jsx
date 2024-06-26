@@ -1,8 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import database from "../app write services/database.service";
-import { addNote, deleteNote } from "../Store/features/notesSlice";
+import {deleteNote } from "../Store/features/notesSlice";
 
 function Note({ $id, title, content, className }) {
   const userData = useSelector(state => state.authReducer.userData)
@@ -12,7 +11,7 @@ function Note({ $id, title, content, className }) {
   };
   return (
     <div
-      className={`w-full flex justify-between items-center cursor-pointer text-white rounded p-3 bg-gray-900 min-w-80 ${className}`}
+      className={`w-full flex justify-between items-center cursor-pointer text-white rounded p-3 bg-gray-900 ${className}`}
     >
       <Link className="w-10/12" to={`/edit-note/${$id}`}>
         <div>
@@ -25,7 +24,7 @@ function Note({ $id, title, content, className }) {
         </div>
       </Link>
       <span onClick={remove} className="text-3xl z-10">
-        ❌
+       ❌
       </span>
     </div>
   );

@@ -8,7 +8,7 @@ import {
   createHashRouter,
   createRoutesFromChildren,
 } from "react-router-dom";
-import { Home, Login, Signup } from "./pages";
+import { Home, Login, Setting, Signup } from "./pages";
 import { Provider } from "react-redux";
 import { store } from "./Store/store.js";
 import { Authenticated, NoteEditor } from "./components";
@@ -18,13 +18,12 @@ const router = createHashRouter(
       <Route
         path=""
         element={
-          <Authenticated>
             <Home />
-          </Authenticated>
         }
       />
       <Route path="register" element={<Signup />} />
       <Route path="login" element={<Login />} />
+      <Route path="setting" element = {<Authenticated><Setting /></Authenticated>} />
       <Route
         path="new"
         element={
