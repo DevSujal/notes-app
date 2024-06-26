@@ -1,6 +1,5 @@
 import React, { useEffect, useId, useState } from "react";
 import Button from "./Button";
-import database from "../app write services/database.service";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { appendNote as append, updateNote as update } from "../Store/features/notesSlice";

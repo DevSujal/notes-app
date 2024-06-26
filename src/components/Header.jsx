@@ -26,13 +26,13 @@ function Header({ className }) {
     },
     {
       name: "Sign Up",
-      to: "/signup",
+      to: "/register",
       auth: !status,
     },
   ];
   return (
       <div
-        className={`w-full flex  text-white h-14 p-3 justify-between items-center bg-gray-950 ${className}`}
+        className={`w-full flex  text-white h-14 p-3 justify-between items-center bg-gray-900 ${className}`}
       >
         <h1>Hi, {userData?.name.toUpperCase()}</h1>
         <div className="flex justify-between items-center gap-4">
