@@ -2,23 +2,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import database from "../app write services/database.service";
-import { addNote } from "../Store/features/notesSlice";
+import { addNote, deleteNote } from "../Store/features/notesSlice";
 
 function Note({ $id, title, content, className }) {
   const userData = useSelector(state => state.authReducer.userData)
   const dispatch = useDispatch()
   const remove = () => {
-    database.deleteNote($id)
-    .then((data) =>{
-      if(data) {
-        database.getAllNotes(userData)
-        .then((data) => {
-          if(data) {
-            dispatch(addNote(data.documents))
-          }
-        })
-      }
-    })
+    dispatch(deleteNote({$id}))
   };
   return (
     <div
