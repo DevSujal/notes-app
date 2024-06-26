@@ -2,7 +2,7 @@ import React from 'react'
 
 function Container({className, children}) {
   return (
-    <div className={`w-full h-screen flex flex-col flex-shrink min-h-screen bg-black ${className}`}>
+    <div className={`w-full h-full min-h-screen flex flex-col flex-shrink bg-black ${className}`}>
       {children}
     </div>
   )

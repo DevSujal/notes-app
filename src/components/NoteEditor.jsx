@@ -34,13 +34,13 @@ function NoteEditor() {
     }
   };
 return (
-  <div className="w-full h-full flex flex-col bg-white">
+  <div className="w-full h-screen flex flex-col flex-shrink bg-white">
     <textarea
       name="title"
       value={title}
       onChange={(e) => setTitle(e.target.value)}
       placeholder="Enter the Title here..."
-      className="w-full text-white py-4 px-2 bg-gray-900"
+      className="w-full text-white py-4 px-2 bg-black"
       id="title"
     />
     <textarea
@@ -48,7 +48,7 @@ return (
       onChange={(e) => setContent(e.target.value)}
       value={content}
       placeholder="Enter your notes here..."
-      className="w-full h-full text-white py-4 px-2  bg-gray-900"
+      className="w-full h-full text-white py-4 px-2  bg-black"
       id="content"
     />
 

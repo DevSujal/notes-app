@@ -32,7 +32,8 @@ export class Database{
         {
           title,
           content,
-          userId : $id
+          userId : $id,
+          date : String(Date(Date.now())).substring(4, 24)
         }
       );
     } catch (error) {
@@ -49,7 +50,8 @@ export class Database{
         {
           title,
           content,
-          $id
+          $id,
+          date : String(Date(Date.now())).substring(4, 24)
         }
       );
     } catch (error) {
