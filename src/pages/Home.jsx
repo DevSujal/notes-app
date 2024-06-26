@@ -38,7 +38,7 @@ function Home() {
       </div>
     );
   } else {
-   return <div className="w-full h-full flex justify-center items-center">
+   return <div className="absolute font-bold transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
       <h1 className="text-white text-2xl text-center font-bold">Please Login To Use Our Services...</h1>
     </div>;
   }
