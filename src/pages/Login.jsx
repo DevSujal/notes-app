@@ -21,7 +21,6 @@ function Login() {
               navigate("/");
               database.getAllNotes(currUser).then((data) => {
                 if (data) {
-                  console.log(data);
                   dispatch(addNote(data.documents));
                 }
               });

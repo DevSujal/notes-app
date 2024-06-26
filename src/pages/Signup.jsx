@@ -21,7 +21,6 @@ function Signup() {
               navigate("/");
               database.getAllNotes(userData).then((data) => {
                 if (data) {
-                  console.log(data);
                   dispatch(addNote(data.documents));
                 }
               });
