@@ -11,7 +11,7 @@ import {
 import { Home, Login, Setting, Signup } from "./pages";
 import { Provider } from "react-redux";
 import { store } from "./Store/store.js";
-import { Authenticated, NoteEditor } from "./components";
+import { Authenticated, NoteEditor, UnAuthenticated } from "./components";
 const router = createHashRouter(
   createRoutesFromChildren(
     <Route path="/" element={<App />}>
@@ -21,8 +21,8 @@ const router = createHashRouter(
             <Home />
         }
       />
-      <Route path="register" element={<Signup />} />
-      <Route path="login" element={<Login />} />
+      <Route path="register" element={<UnAuthenticated><Signup /></UnAuthenticated>} />
+      <Route path="login" element={<UnAuthenticated><Login /></UnAuthenticated>} />
       <Route path="setting" element = {<Authenticated><Setting /></Authenticated>} />
       <Route
         path="new"

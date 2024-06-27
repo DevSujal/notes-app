@@ -6,4 +6,5 @@ import NoteEditor from "./NoteEditor";
 import Loader from "./Loader";
 import Header from "./Header";
 import Logout from "./Logout"
-export {Input, Button, Container, Authenticated, NoteEditor, Loader, Header, Logout}
+import UnAuthenticated from "./UnAuthenticated";
+export {Input, Button, Container, Authenticated, NoteEditor, Loader, Header, Logout, UnAuthenticated}
