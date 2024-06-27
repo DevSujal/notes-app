@@ -18,27 +18,13 @@ function Signup() {
     auth
       .createAcount(data)
       .then((userAccount) => {
-        if (userAccount) {
-          auth.getCurrentUser().then((userData) => {
-            if (userData) {
-              dispatch(login(userData));
-              navigate("/");
-              database.getAllNotes(userData).then((data) => {
-                if (data) {
-                  dispatch(addNote(data.documents));
-                }
-              });
-            }
-          });
-        }
+        if (userAccount) navigate("/");
       })
       .catch((err) => {
         console.log(err);
         dispatch(logout());
+        setLoader(false)
       })
-      .finally(() => {
-        setLoader(false);
-      });
   };
 
   return loader ? (
@@ -77,12 +63,6 @@ function Signup() {
           placeholder="Enter Password.."
           {...register("password", { required: true })}
         />
-        {/* <Input
-          label="Avatar"
-          placeholder="Upload Avatar.."
-          type="file"
-          {...register("avatar", { required: true })}
-        /> */}
         <Button className="rounded hover:bg-blue-600">Register</Button>
 
         <span className="flex gap-2">

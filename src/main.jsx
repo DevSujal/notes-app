@@ -11,12 +11,13 @@ import {
 import { Home, Login, Setting, Signup } from "./pages";
 import { Provider } from "react-redux";
 import { store } from "./Store/store.js";
-import { Authenticated, NoteEditor, UnAuthenticated } from "./components";
+import { Authenticated, NoteEditor, UnAuthenticated, getAllData } from "./components";
 const router = createHashRouter(
   createRoutesFromChildren(
     <Route path="/" element={<App />}>
       <Route
         path=""
+        loader = {getAllData}
         element={
             <Home />
         }

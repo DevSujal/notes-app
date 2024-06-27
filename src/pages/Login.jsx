@@ -19,31 +19,14 @@ function Login() {
       .login(data)
       .then((user) => {
         if (user) {
-          auth
-          .getCurrentUser()
-          .then((currUser) => {
-            if (currUser) {
-              dispatch(login(currUser));
-              navigate("/");
-                database.getAllNotes(currUser).then((data) => {
-                  if (data) {
-                    dispatch(addNote(data.documents));
-                  }
-                });
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          navigate("/");
         }
       })
       .catch((err) => {
         console.log(err);
         dispatch(logout());
+        setLoader("/")
       })
-      .finally(() => {
-        setLoader(false);
-      });
   };
 
   return loader ? (
