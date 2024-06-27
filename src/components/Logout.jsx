@@ -9,7 +9,6 @@ import Loader from "./Loader";
 function Logout({ className }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const status = useSelector((state) => state.authReducer.status);
   const [loader, setLoader] = useState(false);
   const logout = () => {
     setLoader(true);
@@ -21,7 +20,7 @@ function Logout({ className }) {
           dispatch(clearNotes());
         }
 
-        navigate("/login");
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);

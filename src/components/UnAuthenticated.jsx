@@ -9,7 +9,7 @@ function UnAuthenticated({ children }) {
     if (status) {
         navigate("/")
     }
-  }, [status, navigate]);
+  }, []);
   return <div className="h-full w-full">{children}</div>;
 }
 

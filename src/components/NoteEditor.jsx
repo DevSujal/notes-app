@@ -15,7 +15,6 @@ function NoteEditor() {
   useEffect(() => {
     if (url) {
       const note = notes.filter((note) => note.$id === url);
-      console.log(note);
       setTitle(note[0].title);
       setContent(note[0].content);
     }
