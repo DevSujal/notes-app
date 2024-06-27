@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 function Home() {
   const status = useSelector((state) => state.authReducer.status);
   const [search, setSearch] = useState("");
+  
 if (status) {
     return (
       <div className="w-full h-full p-5 flex flex-col gap-3 items-center">

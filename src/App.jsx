@@ -14,6 +14,7 @@ function App() {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.authReducer.status);
   useEffect(() => {
+    if (!status) {
       auth
         .getCurrentUser()
         .then((user) => {
@@ -24,13 +25,14 @@ function App() {
                 dispatch(addNote(data.documents));
               }
             });
-          } 
+          }
         })
         .catch((err) => {
           console.log(err);
           dispatch(logout());
-          navigate("/login")
-        })
+          navigate("/");
+        });
+    }
   }, []);
   return (
     <Container>

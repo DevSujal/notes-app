@@ -20,11 +20,11 @@ function Login() {
       .then((user) => {
         if (user) {
           auth
-            .getCurrentUser()
-            .then((currUser) => {
-              if (currUser) {
-                dispatch(login(currUser));
-                navigate("/");
+          .getCurrentUser()
+          .then((currUser) => {
+            if (currUser) {
+              dispatch(login(currUser));
+              navigate("/");
                 database.getAllNotes(currUser).then((data) => {
                   if (data) {
                     dispatch(addNote(data.documents));
@@ -34,14 +34,16 @@ function Login() {
             })
             .catch((err) => {
               console.log(err);
-              dispatch(logout());
-            })
-            .finally(() => {
-              setLoader(false);
             });
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        dispatch(logout());
+      })
+      .finally(() => {
+        setLoader(false);
+      });
   };
 
   return loader ? (
