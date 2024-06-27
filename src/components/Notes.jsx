@@ -12,7 +12,7 @@ function Notes({ className, search }) {
         {notes
           .filter(
             (note) =>
-              note.title.includes(search) || note.content.includes(search)
+              note.title.toLowerCase().includes(search.toLowerCase()) || note.content.toLowerCase().includes(search.toLowerCase())
           )
           .map((note) => (
             
