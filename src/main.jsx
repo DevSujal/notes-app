@@ -11,6 +11,7 @@ import {
 import { Home, Login, Setting, Signup } from "./pages";
 import { Provider } from "react-redux";
 import { store } from "./Store/store.js";
+import ReactLoading from "react-loading";
 import {
   Authenticated,
   Loader,
@@ -21,7 +22,7 @@ import {
 const router = createHashRouter(
   createRoutesFromChildren(
     <Route path="/" element={<App />}>
-      <Route path="" loader={getAllData}  element={<Home />} />
+      <Route path="" loader={getAllData} element={<Home />} />
       <Route
         path="register"
         element={
@@ -69,7 +70,18 @@ const router = createHashRouter(
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <RouterProvider
-      fallbackElement={<Loader children={"Fetching Your Details..."} />}
+      fallbackElement={
+        <div className="w-screen h-screen bg-black">
+          <Loader>
+            <ReactLoading
+              type="bars"
+              color="#0000FF"
+              height={100}
+              width={100}
+            />
+          </Loader>
+        </div>
+      }
       router={router}
     />
   </Provider>

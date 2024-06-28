@@ -1,7 +1,7 @@
 import { Client, Databases, Query } from "appwrite";
 import { conf } from "../../config";
 
-export class Database{
+export class Database {
   client = new Client();
   database;
   constructor() {
@@ -32,16 +32,16 @@ export class Database{
         {
           title,
           content,
-          userId : $id,
-          date : String(Date(Date.now())).substring(4, 24)
+          userId: $id,
+          date: String(Date(Date.now())).substring(4, 24),
         }
       );
     } catch (error) {
-      console.log("createNote is not working appwrite service : ", error);
+      throw Error(`${error}`);
     }
   }
 
-  async updataNote({ title, content, url, $id}){
+  async updataNote({ title, content, url, $id }) {
     try {
       return await this.database.updateDocument(
         conf.appWriteDatabaseId,
@@ -51,15 +51,15 @@ export class Database{
           title,
           content,
           $id,
-          date : String(Date(Date.now())).substring(4, 24)
+          date: String(Date(Date.now())).substring(4, 24),
         }
       );
     } catch (error) {
-      console.log("updateNote is not working appwrite service : ", error);
+      throw Error(`${error}`);
     }
   }
 
-  async deleteNote( url ) {
+  async deleteNote(url) {
     try {
       return await this.database.deleteDocument(
         conf.appWriteDatabaseId,
@@ -67,11 +67,11 @@ export class Database{
         url
       );
     } catch (error) {
-      console.log("deleteNote is not working appwrite service : ", error);
+      throw Error(`${error}`);
     }
   }
 
-  async getNote( url ) {
+  async getNote(url) {
     try {
       return await this.database.getDocument(
         conf.appWriteDatabaseId,
@@ -79,11 +79,11 @@ export class Database{
         url
       );
     } catch (error) {
-      console.log("getNote is not working appwrite service : ", error);
+      throw Error(`${error}`);
     }
   }
 
-  async getAllNotes({$id}) {
+  async getAllNotes({ $id }) {
     try {
       return await this.database.listDocuments(
         conf.appWriteDatabaseId,
@@ -91,11 +91,11 @@ export class Database{
         [Query.equal("userId", $id)]
       );
     } catch (error) {
-      console.log("getAllNotes is not working appwrite service : ", error);
+      throw Error(`${error}`);
     }
   }
 }
 
-const database = new Database()
+const database = new Database();
 
-export default database
+export default database;

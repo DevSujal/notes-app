@@ -26,18 +26,15 @@ export class Auth {
         return this.login({ email, password });
       }
     } catch (error) {
-      console.log("createAccount is not working appwrite service : ", error);
+      throw Error(`${error}`);
     }
   }
 
   async login({ email, password }) {
     try {
-      return await this.account.createEmailPasswordSession(
-        email,
-        password
-      );
+      return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
-      console.log("login is not working appwrite service : ", error);
+      throw Error(`${error}`);
     }
   }
 
@@ -45,19 +42,19 @@ export class Auth {
     try {
       return await this.account.deleteSessions();
     } catch (error) {
-      console.log("logout is not working appwrite service : ", error);
+      throw Error(`${error}`);
     }
   }
 
   async getCurrentUser() {
     try {
-        return await this.account.get()
+      return await this.account.get();
     } catch (error) {
-      console.log("getCurrentUser is not working appwrite service : ", error);
+      throw Error(`${error}`);
     }
   }
 }
 
-const auth = new Auth()
+const auth = new Auth();
 
 export default auth;

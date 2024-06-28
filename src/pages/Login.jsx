@@ -11,6 +11,7 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
+  const [err, setErr] = useState("")
   const onSubmit = (data) => {
     setLoader(true);
     auth
@@ -21,9 +22,9 @@ function Login() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        setLoader(false)
+        setErr(err?.message)
         dispatch(logout());
-        setLoader("/")
       })
   };
 
@@ -31,6 +32,7 @@ function Login() {
     <Loader>Please Wait...</Loader>
   ) : (
     <div className="absolute justify-center items-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-5 bg-gray-900 text-white rounded w-3/12 min-w-80 py-6">
+      <h3 className=" text-red-600 text-center text-sm absolute -bottom-10">{err.split(":")[1]}</h3>
       <h1 className=" text-blue-200 font-bold text-2xl">Login</h1>
       <form
         action=""
