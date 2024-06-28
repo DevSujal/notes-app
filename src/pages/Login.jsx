@@ -18,7 +18,7 @@ function Login() {
       .login(data)
       .then((user) => {
         if (user) {
-          navigate("/");
+          navigate("/")
         }
       })
       .catch((err) => {

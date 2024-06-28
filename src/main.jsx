@@ -21,7 +21,7 @@ import {
 const router = createHashRouter(
   createRoutesFromChildren(
     <Route path="/" element={<App />}>
-      <Route path="" loader={getAllData} element={<Home />} />
+      <Route path="" loader={getAllData}  element={<Home />} />
       <Route
         path="register"
         element={
