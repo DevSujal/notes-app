@@ -14,9 +14,8 @@ export const getAllData = async () => {
         return null;
       }
       const notes = await database.getAllNotes(user);
-
       store.dispatch(login(user))
-      store.dispatch(addNote(notes))
+      store.dispatch(addNote(notes.documents))
 
       return true;
     } else return false;
