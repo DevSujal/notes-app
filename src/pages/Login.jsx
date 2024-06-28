@@ -5,34 +5,54 @@ import { useForm } from "react-hook-form";
 import auth from "../app write services/auth.service";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../Store/features/authSlice";
+import database from "../app write services/database.service";
+import { addNote } from "../Store/features/notesSlice";
 
 function Login() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
-  const [err, setErr] = useState("")
-  const onSubmit = (data) => {
-    setLoader(true);
-    auth
-      .login(data)
-      .then((user) => {
-        if (user) {
-          navigate("/")
-        }
-      })
-      .catch((err) => {
-        setLoader(false)
-        setErr(err?.message)
-        dispatch(logout());
-      })
+  const [err, setErr] = useState("");
+  const onSubmit = async (data) => {
+    try {
+      setLoader(true);
+      const user = await auth.login(data);
+
+      if (!user) {
+        throw Error("user not logged in");
+      }
+
+      const userData = await auth.getCurrentUser();
+
+      if (!userData) {
+        throw Error("user not found");
+      }
+
+      dispatch(login(userData));
+
+      const { documents } = await database.getAllNotes(userData);
+
+      if (!documents) {
+        throw Error("notes not found");
+      }
+
+      dispatch(addNote(documents));
+      navigate("/");
+    } catch (error) {
+      setErr(error?.message);
+    } finally {
+      setLoader(false);
+    }
   };
 
   return loader ? (
-    <Loader/>
+    <Loader />
   ) : (
     <div className="absolute justify-center items-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-5 bg-gray-900 text-white rounded w-3/12 min-w-80 py-6">
-      <h3 className=" text-red-600 text-center text-sm absolute -bottom-10">{err.split(":")[1]}</h3>
+      <h3 className=" text-red-600 text-center text-sm absolute -bottom-10">
+        {err.split(":")[1]}
+      </h3>
       <h1 className=" text-blue-200 font-bold text-2xl">Login</h1>
       <form
         action=""

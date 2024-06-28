@@ -12,18 +12,36 @@ function Signup() {
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
   const [err, setErr] = useState("");
-  const onSubmit = (data) => {
-    setLoader(true);
-    auth
-      .createAcount(data)
-      .then((userAccount) => {
-        if (userAccount) navigate("/");
-      })
-      .catch((err) => {
-        setLoader(false);
-        setErr(err?.message);
-        dispatch(logout());
-      });
+  const onSubmit = async (data) => {
+    try {
+      setLoader(true);
+      const user = await auth.createAcount(data);
+
+      if (!user) {
+        throw Error("user not created");
+      }
+
+      const userData = await auth.getCurrentUser();
+
+      if (!userData) {
+        throw Error("user not found");
+      }
+
+      dispatch(login(userData));
+
+      const { documents } = await database.getAllNotes(userData);
+
+      if (!documents) {
+        throw Error("notes not found");
+      }
+
+      dispatch(addNote(documents));
+      navigate("/");
+    } catch (error) {
+      setErr(error?.message);
+    } finally {
+      setLoader(false);
+    }
   };
 
   return loader ? (

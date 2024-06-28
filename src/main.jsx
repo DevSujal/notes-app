@@ -20,8 +20,8 @@ import {
 } from "./components";
 const router = createHashRouter(
   createRoutesFromChildren(
-    <Route path="/" element={<App />}>
-      <Route path="" loader={getAllData}  element={<Home />} />
+    <Route path="/" loader={getAllData} element={<App />}>
+      <Route path=""   element={<Home />} />
       <Route
         path="register"
         element={

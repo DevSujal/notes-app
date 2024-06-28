@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import auth from "../app write services/auth.service";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { logout as storeLogout } from "../Store/features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { clearNotes } from "../Store/features/notesSlice";
@@ -10,24 +10,23 @@ function Logout({ className }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
-  const logout = () => {
-    setLoader(true);
-    auth
-      .logout()
-      .then((user) => {
-        if (user) {
-          dispatch(storeLogout());
-          dispatch(clearNotes());
-        }
+  const logout = async () => {
+    try {
+      setLoader(true);
+      const user = await auth.logout();
 
-        navigate("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoader(false);
-      });
+      if (!user) {
+        throw Error("user no logged out");
+      }
+
+      dispatch(storeLogout());
+      dispatch(clearNotes());
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoader(false);
+    }
   };
   return loader ? (
     <Loader>Please Wait...</Loader>

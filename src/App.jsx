@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import "./App.css";
 import { Container } from "./components";
 import { Header } from "./components";
