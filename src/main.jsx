@@ -11,7 +11,6 @@ import {
 import { Home, Login, Setting, Signup } from "./pages";
 import { Provider } from "react-redux";
 import { store } from "./Store/store.js";
-import ReactLoading from "react-loading";
 import {
   Authenticated,
   Loader,
@@ -72,14 +71,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider
       fallbackElement={
         <div className="w-screen h-screen bg-black">
-          <Loader>
-            <ReactLoading
-              type="bars"
-              color="#0000FF"
-              height={100}
-              width={100}
-            />
-          </Loader>
+          <Loader/>
         </div>
       }
       router={router}

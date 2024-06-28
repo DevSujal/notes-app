@@ -1,9 +1,11 @@
 import React from "react";
-
-function Loader({ children }) {
+import ReactLoading from "react-loading";
+function Loader({ type }) {
   return (
-      <div className="absolute text-white font-bold transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-        <h1 className="text-5xl">{children}</h1>
+    <div className="absolute text-white font-bold transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+      <h1 className="text-5xl">
+        <ReactLoading type="bars" color="#0000FF" height={100} width={100} />
+      </h1>
     </div>
   );
 }

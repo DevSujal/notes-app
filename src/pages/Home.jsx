@@ -27,7 +27,7 @@ function Home() {
       </div>
     );
   } else {
-    return <Loader>Please Login to Make Notes..</Loader>;
+    return <h1 className="text-white m-auto text-xl font-bold">Please Login to Make Notes..</h1>;
   }
 }
 

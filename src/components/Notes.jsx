@@ -28,9 +28,7 @@ function Notes({ className, search }) {
     );
   } else {
     return (
-      <Loader>
-        Make Your First Note...
-      </Loader>
+        <h1 className="text-white">Make Your First Note...</h1>
     );
   }
 }
