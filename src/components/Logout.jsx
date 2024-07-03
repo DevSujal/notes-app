@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import {Button, Loader} from "../components";
 import auth from "../app write services/auth.service";
 import { useDispatch} from "react-redux";
 import { logout as storeLogout } from "../Store/features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { clearNotes } from "../Store/features/notesSlice";
-import Loader from "./Loader";
 function Logout({ className }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();

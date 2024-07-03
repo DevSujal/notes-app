@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import {useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Loader from "./Loader";
+import {Loader} from "../components";
 
 function Authenticated({ children }) {
   const navigate = useNavigate();

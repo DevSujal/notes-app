@@ -1,5 +1,5 @@
 import React from "react";
-import Note from "./Note";
+import {Note} from "../components";
 import { useSelector } from "react-redux";
 function Notes({ className, search }) {
   const notes = useSelector((state) => state.noteReducer.notes);

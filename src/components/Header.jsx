@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Header({ className }) {
   const userData = useSelector((state) => state.authReducer.userData);
   const status = useSelector((state) => state.authReducer.status);
-
-  const [display, setDisplay] = useState("hidden");
-
   const links = [
     {
       name: "Home",

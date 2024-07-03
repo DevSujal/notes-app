@@ -11,6 +11,7 @@ import { getAllData } from "./getAllData";
 import Search from "./Search";
 import AddNotes from "./AddNotes";
 import Notes from "./Notes";
+import Note from "./Note"
 export {
   Input,
   Button,
@@ -24,5 +25,6 @@ export {
   getAllData,
   Search, 
   AddNotes,
-  Notes
+  Notes,
+  Note
 };

@@ -1,5 +1,5 @@
 import React from 'react'
-import Input from './Input'
+import {Input} from '../components'
 function Search({className, setSearch, searchContent}) {
   return (
     <div className={`flex w-6/12 min-w-80 rounded overflow-hidden ${className}`}>
