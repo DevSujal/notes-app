@@ -12,7 +12,7 @@ function Input({
     <input
     ref={ref}
       id={id}
-      className={`p-3 rounded text-gray-800 flex justify-center items-start ${className}`}
+      className={`p-3 rounded text-slate-800 flex justify-center items-start ${className}`}
       type={type}
       placeholder={placeholder}
       name={`${label}`}

@@ -1,9 +1,7 @@
 import React from "react";
 import Note from "./Note";
 import { useSelector } from "react-redux";
-import { Loader } from "./index";
 function Notes({ className, search }) {
-  const userData = useSelector((state) => state.authReducer.userData);
   const notes = useSelector((state) => state.noteReducer.notes);
 
   if (notes.length > 0) {
@@ -22,6 +20,7 @@ function Notes({ className, search }) {
               content={note.content}
               title={note.title}
               date = {note.date}
+              className="hover:opacity-80"
             />
           ))}
       </div>

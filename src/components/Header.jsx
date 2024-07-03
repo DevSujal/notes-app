@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Header({ className }) {
   const userData = useSelector((state) => state.authReducer.userData);
@@ -12,7 +12,7 @@ function Header({ className }) {
     {
       name: "Home",
       to: "/",
-      auth: status,
+      auth: true,
     },
     {
       name: "Settings",
@@ -32,16 +32,16 @@ function Header({ className }) {
   ];
   return (
       <div
-        className={`w-full flex  text-white h-14 p-3 justify-between items-center bg-gray-900 ${className}`}
+        className={`w-full flex  text-white h-14 p-3 justify-between items-center bg-slate-900 ${className}`}
       >
         <h1>Hi, {userData?.name.toUpperCase()}</h1>
         <div className="flex justify-between items-center gap-4">
           {links.map(
             (link) =>
               link.auth && (
-                <Link key={link.name} className="p-2 bg-blue-600 rounded" to={link.to}>
+                <NavLink key={link.name} className={({isActive}) => `p-2 hover:opacity-85 ${isActive ? "bg-orange-600" : "bg-blue-600" } rounded`} to={link.to}>
                   {link.name}
-                </Link>
+                </NavLink>
               )
           )}
         </div>

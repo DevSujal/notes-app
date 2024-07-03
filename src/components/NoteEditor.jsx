@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -39,7 +39,7 @@ return (
       value={title}
       onChange={(e) => setTitle(e.target.value)}
       placeholder="Enter the Title here..."
-      className="w-full text-white py-4 px-2 bg-black"
+      className="w-full text-xl font-semibold text-white py-4 px-2 bg-black"
       id="title"
     />
     <textarea
@@ -53,7 +53,7 @@ return (
 
     <Button
       onClick={url ? updateNote : appendNote}
-      className="absolute bottom-10 right-10 rounded-md py-2 px-4 font-bold"
+      className="absolute hover:opacity-85 bottom-10 right-10 rounded-md py-2 px-4 font-bold"
     >
       Save
     </Button>
