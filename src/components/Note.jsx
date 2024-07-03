@@ -12,7 +12,7 @@ function Note({ $id, title, content, className, date }) {
   };
   return (
     <div
-      className={`w-full flex justify-between items-center cursor-pointer text-white rounded p-2 bg-slate-900 ${className}`}
+      className={`w-full flex justify-between items-center cursor-pointer text-white rounded p-2 bg-slate-950 ${className}`}
     >
       <Link className="w-9/12" to={`/edit-note/${$id}`}>
         <div className="flex flex-col flex-shrink flex-grow gap-1">

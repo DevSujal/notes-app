@@ -29,7 +29,7 @@ function Header({ className }) {
   ];
   return (
       <div
-        className={`w-full flex  text-white h-14 p-3 justify-between items-center bg-slate-900 ${className}`}
+        className={`w-full flex  text-white h-14 p-3 justify-between items-center bg-slate-950 ${className}`}
       >
         <h1>Hi, {userData?.name.toUpperCase()}</h1>
         <div className="flex justify-between items-center gap-4">
