@@ -29,7 +29,7 @@ function Logout({ className }) {
     }
   };
   return loader ? (
-    <Loader>Please Wait...</Loader>
+    <Loader/>
   ) : (
     <Button onClick={logout} className={`${className}`} type="button">
       Logout

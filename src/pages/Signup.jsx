@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import auth from "../app write services/auth.service";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../Store/features/authSlice";
+import database from "../app write services/database.service";
+import { addNote } from "../Store/features/notesSlice";
 
 function Signup() {
   const { register, handleSubmit } = useForm();
@@ -30,7 +32,6 @@ function Signup() {
       dispatch(login(userData));
 
       const { documents } = await database.getAllNotes(userData);
-
       if (!documents) {
         throw Error("notes not found");
       }
@@ -39,6 +40,9 @@ function Signup() {
       navigate("/");
     } catch (error) {
       setErr(error?.message);
+      await auth.logout();
+      dispatch(logout());
+      dispatch(clearNotes());
     } finally {
       setLoader(false);
     }

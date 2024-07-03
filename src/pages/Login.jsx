@@ -41,6 +41,9 @@ function Login() {
       navigate("/");
     } catch (error) {
       setErr(error?.message);
+      await auth.logout();
+      dispatch(logout());
+      dispatch(clearNotes());
     } finally {
       setLoader(false);
     }
