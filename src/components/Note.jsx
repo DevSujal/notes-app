@@ -1,18 +1,43 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {deleteNote } from "../Store/features/notesSlice";
-import removeImg from "../assets/delete.webp"
-
+import { deleteNote } from "../Store/features/notesSlice";
+import removeImg from "../assets/delete.webp";
+import Swal from "sweetalert2";
+import database from "../app write services/database.service";
 
 function Note({ $id, title, content, className, date }) {
-  const dispatch = useDispatch()
-  const remove = () => {
-    dispatch(deleteNote({$id}))
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.authReducer.userData);
+  const remove = async () => {
+    const { isConfirmed } = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      background: "#1a202c",
+      color: "#ffffff",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (isConfirmed) {
+      await database.deleteNote($id);
+      dispatch(deleteNote($id));
+      await Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success",
+        background: "#1a202c",
+        color: "#ffffff",
+      });
+    }
+    console.log(confirm);
   };
   return (
     <div
-      className={`w-full flex justify-between items-center cursor-pointer text-white rounded p-2 bg-gray-900 ${className}`}
+      className={`w-full flex justify-between items-center cursor-pointer text-white rounded p-2 bg-black ${className}`}
     >
       <Link className="w-9/12" to={`/edit-note/${$id}`}>
         <div className="flex flex-col flex-shrink flex-grow gap-1">
@@ -28,7 +53,7 @@ function Note({ $id, title, content, className, date }) {
         </div>
       </Link>
       <span onClick={remove} className=" z-10">
-       <img src={removeImg} width={70} alt="remove" />
+        <img src={removeImg} width={70} alt="remove" />
       </span>
     </div>
   );
