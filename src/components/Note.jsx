@@ -27,13 +27,12 @@ function Note({ $id, title, content, className, date }) {
       dispatch(deleteNote($id));
       await Swal.fire({
         title: "Deleted!",
-        text: "Your file has been deleted.",
+        text: "Your note has been deleted.",
         icon: "success",
         background: "#1a202c",
         color: "#ffffff",
       });
     }
-    console.log(confirm);
   };
   return (
     <div

@@ -43,6 +43,15 @@ function NoteEditor() {
         timer: 1500,
       });
       navigate("/");
+    } else {
+      await Swal.fire({
+        icon: "error",
+        title: "please fill title and content",
+        background: "#1a202c",
+        color: "#ffffff",
+        showConfirmButton: true,
+        timer: 2000,
+      });
     }
   };
   const updateNote = async () => {
@@ -67,6 +76,15 @@ function NoteEditor() {
         timer: 1500,
       });
       navigate("/");
+    }else{
+      await Swal.fire({
+        icon: "error",
+        title: "please fill title and content",
+        background: "#1a202c",
+        color: "#ffffff",
+        showConfirmButton: true,
+        timer: 2000,
+      });
     }
   };
   return (
@@ -90,9 +108,14 @@ function NoteEditor() {
 
       <Button
         onClick={url ? updateNote : appendNote}
-        className="absolute hover:opacity-85 bottom-10 right-10 rounded-md py-2 px-4 font-bold"
+        className="absolute hover:opacity-85 bg-green-500 rounded-full bottom-10 right-10 w-15 h-15 font-bold"
       >
-        Save
+        <span
+          style={{ textShadow: "0 0 0 white" }}
+          className="text-transparent text-xl"
+        >
+          ✔️
+        </span>
       </Button>
     </div>
   );
