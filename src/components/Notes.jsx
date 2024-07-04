@@ -6,7 +6,7 @@ function Notes({ className, search }) {
 
   if (notes.length > 0) {
     return (
-      <div className={`w-6/12 min-w-80 flex flex-col gap-3 ${className}`}>
+      <div className={`w-6/12 p-3 bg-white/10 rounded min-w-80 flex flex-col gap-3 ${className}`}>
         {notes
           .filter(
             (note) =>
