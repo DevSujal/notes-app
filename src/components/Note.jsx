@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteNote } from "../Store/features/notesSlice";
 import removeImg from "../assets/delete.webp";
@@ -8,7 +8,6 @@ import database from "../app write services/database.service";
 
 function Note({ $id, title, content, className, date }) {
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.authReducer.userData);
   const remove = async () => {
     const { isConfirmed } = await Swal.fire({
       title: "Are you sure?",
@@ -36,7 +35,7 @@ function Note({ $id, title, content, className, date }) {
   };
   return (
     <div
-      className={`w-full flex justify-between items-center cursor-pointer text-white rounded p-2 bg-black ${className}`}
+      className={`w-full flex justify-between items-center cursor-pointer text-white rounded p-2 bg-black/90 ${className}`}
     >
       <Link className="w-9/12" to={`/edit-note/${$id}`}>
         <div className="flex flex-col flex-shrink flex-grow gap-1">

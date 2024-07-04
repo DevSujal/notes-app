@@ -88,13 +88,13 @@ function NoteEditor() {
     }
   };
   return (
-    <div className="w-full h-screen flex flex-col flex-shrink bg-white">
+    <div className="w-full h-full flex flex-col flex-grow bg-transparent">
       <textarea
         name="title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Enter the Title here..."
-        className="w-full text-xl font-semibold text-white py-4 px-2 bg-black"
+        className="w-full text-xl font-semibold text-white py-4 px-2 bg-black/80"
         id="title"
       />
       <textarea
@@ -102,17 +102,17 @@ function NoteEditor() {
         onChange={(e) => setContent(e.target.value)}
         value={content}
         placeholder="Enter your notes here..."
-        className="w-full h-full text-white py-4 px-2  bg-black"
+        className="w-full h-full text-white py-4 px-2 flex-grow  bg-black/80"
         id="content"
       />
 
       <Button
         onClick={url ? updateNote : appendNote}
-        className="absolute hover:opacity-85 bg-green-500 rounded-full bottom-10 right-10 w-15 h-15 font-bold"
+        className="absolute hover:opacity-85 bg-green-500 rounded-full w-16 h-16 bottom-10 right-10 font-bold"
       >
         <span
           style={{ textShadow: "0 0 0 white" }}
-          className="text-transparent text-xl"
+          className="text-transparent  sm:text-xl text-base"
         >
           ✔️
         </span>

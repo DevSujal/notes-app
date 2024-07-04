@@ -11,7 +11,7 @@ function Authenticated({ children }) {
       navigate("/")
     }
   }, []);
-  return !status ? <Loader /> : <div className="h-full">{children}</div>;
+  return !status ? <Loader /> : <>{children}</>;
 }
 
 export default Authenticated;
