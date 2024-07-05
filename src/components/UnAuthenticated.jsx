@@ -7,10 +7,14 @@ function UnAuthenticated({ children }) {
   const status = useSelector((state) => state.authReducer.status);
   useEffect(() => {
     if (status) {
-        navigate("/")
+      navigate("/");
     }
   }, []);
-  return <div className="h-full w-full">{children}</div>;
+  return (
+    <div className="w-full h-full bg-black/80 flex justify-center items-center flex-grow">
+      {children}
+    </div>
+  );
 }
 
 export default UnAuthenticated;
