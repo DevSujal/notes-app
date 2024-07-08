@@ -8,7 +8,7 @@ import {
   createHashRouter,
   createRoutesFromChildren,
 } from "react-router-dom";
-import { Home, Login, Setting, Signup } from "./pages";
+import { Home, Login, PagenotFound, Setting, Signup } from "./pages";
 import { Provider } from "react-redux";
 import { store } from "./Store/store.js";
 import {
@@ -60,6 +60,12 @@ const router = createHashRouter(
           <Authenticated>
             <NoteEditor />
           </Authenticated>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <PagenotFound />
         }
       />
     </Route>
