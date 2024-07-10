@@ -50,7 +50,7 @@ function Note({ $id, title, content, className, date }) {
       className={`w-full flex justify-between items-center cursor-pointer text-white rounded p-2 bg-black/90 ${className}`}
     >
       <Link className="w-full" to={`/edit-note/${$id}`}>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1">
           <h2 className="text-lg whitespace-nowrap overflow-hidden text-ellipsis font-bold">
             {title}
           </h2>
