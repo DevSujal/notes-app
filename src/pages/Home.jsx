@@ -7,7 +7,7 @@ function Home() {
   const [search, setSearch] = useState("");
   if (status) {
     return (
-      <div className="w-full h-full p-5 bg-black/80 flex flex-col flex-grow gap-3 items-center">
+      <div className="w-full h-full p-5 bg-black/70 flex flex-col flex-grow gap-3 items-center">
         <Search setSearch={setSearch} searchContent={search} />
         <Notes search={search} />
         <AddNotes />
@@ -15,7 +15,7 @@ function Home() {
     );
   } else {
     return (
-      <div className="w-full h-full bg-black/80 flex justify-center items-center flex-grow">
+      <div className="w-full h-full bg-black/70 flex justify-center items-center flex-grow">
         <h1 className="text-white text-xl font-bold">
           Please Login to Make Notes..
         </h1>

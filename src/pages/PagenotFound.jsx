@@ -9,7 +9,7 @@ function PagenotFound() {
         navigate("/")
     }
   return (
-    <div className='bg-black/80 flex-grow text-white flex justify-center items-center'>
+    <div className='bg-black/70 flex-grow text-white flex justify-center items-center'>
       <div className='md:w-2/4 w-3/4 flex flex-col gap-3 justify-center items-center'>
         <h1 className='text-9xl animate-bounce'>😵</h1>
         <h1 className='text-4xl'>OOPS!</h1>

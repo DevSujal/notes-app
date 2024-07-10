@@ -8,13 +8,12 @@ import {
   createHashRouter,
   createRoutesFromChildren,
 } from "react-router-dom";
-import { Home, Login, PagenotFound, Setting, Signup } from "./pages";
+import { Home, Login, PagenotFound, Setting, Signup, NoteEditor } from "./pages";
 import { Provider } from "react-redux";
 import { store } from "./Store/store.js";
 import {
   Authenticated,
   Loader,
-  NoteEditor,
   UnAuthenticated,
   getAllData,
 } from "./components";

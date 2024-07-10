@@ -11,7 +11,7 @@ function UnAuthenticated({ children }) {
     }
   }, []);
   return (
-    <div className="w-full h-full bg-black/80 flex justify-center items-center flex-grow">
+    <div className="w-full h-full bg-black/70 flex justify-center items-center flex-grow">
       {children}
     </div>
   );
