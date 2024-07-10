@@ -24,7 +24,7 @@ function TextArea({
     return () => {
       clearTimeout(timeoutData);
     };
-  }, [title, content]);
+  }, [id === "title" ? title : id === "content" ? content : ""]);
   return (
     <textarea
       value={id === "title" ? title : content}
