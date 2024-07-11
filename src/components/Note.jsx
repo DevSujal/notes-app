@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import database from "../app write services/database.service";
 import { useLongPress } from "use-long-press";
 import images from "./images.js";
-function Note({ $id, title, content, className, date }) {
+function Note({ $id, title, content, className, date, idx }) {
   const dispatch = useDispatch();
   const callback = useCallback(() => {
     remove();
@@ -48,7 +48,7 @@ function Note({ $id, title, content, className, date }) {
     <div
       {...bind()}
       style={{
-        background: `url(${images[Math.floor(Math.random() * images.length)]})`,
+        background: `url(${images[idx]})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% auto",
         width: "100%",

@@ -12,10 +12,11 @@ function Notes({ className, search }) {
             (note) =>
               note.title.toLowerCase().includes(search.toLowerCase()) || note.content.toLowerCase().includes(search.toLowerCase())
           )
-          .map((note) => (
+          .map((note, idx) => (
             
             <Note
               key={note.$id}
+              idx = {idx % 6}
               $id={note.$id}
               content={note.content}
               title={note.title}
