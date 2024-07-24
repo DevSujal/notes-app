@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 function TextArea({
   title,
@@ -25,8 +25,16 @@ function TextArea({
       clearTimeout(timeoutData);
     };
   }, [id === "title" ? title : id === "content" ? content : ""]);
+
+  const textareaRef = useRef(null);
+  useEffect(() => {
+    if(textareaRef.current){
+      textareaRef.current.scrollTo({ top: textareaRef.current.scrollHeight, behavior: 'smooth' });
+    }
+  }, [textareaRef.current]);
   return (
     <textarea
+    ref = {textareaRef}
       value={id === "title" ? title : content}
       onChange={(e) => {
         if (id === "title") setTitle(e.target.value);
