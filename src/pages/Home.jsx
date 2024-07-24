@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AddNotes, Notes, Search } from "../components";
+import { Notes, Search } from "../components";
 import { useSelector } from "react-redux";
 
 function Home() {
@@ -10,7 +10,6 @@ function Home() {
       <div className="w-full h-full p-5 bg-black/70 flex flex-col flex-grow gap-3 items-center">
         <Search setSearch={setSearch} searchContent={search} />
         <Notes search={search} />
-        <AddNotes />
       </div>
     );
   } else {

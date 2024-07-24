@@ -9,7 +9,6 @@ import Logout from "./Logout";
 import UnAuthenticated from "./UnAuthenticated";
 import { getAllData } from "./getAllData";
 import Search from "./Search";
-import AddNotes from "./AddNotes";
 import Notes from "./Notes";
 import Note from "./Note"
 import TextArea from "./TextArea";
@@ -25,7 +24,6 @@ export {
   UnAuthenticated,
   getAllData,
   Search, 
-  AddNotes,
   Notes,
   Note,
   TextArea
