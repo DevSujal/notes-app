@@ -40,11 +40,11 @@ function Header({ className }) {
   ];
   return (
       <div
-        className={`w-full flex text-white h-14 p-3 justify-between items-center bg-black/70 ${className}`}
+        className={`w-full flex flex-row-reverse sm:flex-row text-white h-14 p-3 justify-between items-center bg-black/70 ${className}`}
       >
         <h1>Hi, {userData?.name.toUpperCase()}</h1>
-        <button onClick={() => setIsMenuOpen(prev => !prev)} className={`sm:hidden text-xl fixed ${isMenuOpen ? "right-40" : "right-6"} transition-all bg-black/50 px-2 py-1 rounded`}>☰</button>
-        <div className={`flex justify-between items-center gap-4 sm:flex-row flex-col z-10 fixed sm:static right-3 bg-black sm:bg-transparent top-3 p-4 ${isMenuOpen ? "flex" : "hidden"} sm:flex`}>
+        <button onClick={() => setIsMenuOpen(prev => !prev)} className={`sm:hidden text-xl fixed ${isMenuOpen ? "left-40" : "left-6"} transition-all bg-black/50 px-2 py-1 rounded`}>☰</button>
+        <div className={`flex justify-between items-center gap-4 sm:flex-row flex-col z-10 fixed sm:static left-3 bg-black sm:bg-transparent top-3 p-4 ${isMenuOpen ? "flex" : "hidden"} sm:flex`}>
           {links.map(
             (link) =>{
              return link.auth && (

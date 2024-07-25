@@ -5,9 +5,9 @@ function Input({
   placeholder,
   label,
   className = "",
+  id,
   ...props
 }, ref) {
-  const id = useId();
   return (
     <input
     ref={ref}
