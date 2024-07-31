@@ -16,7 +16,7 @@ function Notes({ className, search }) {
             
             <Note
               key={note.$id}
-              idx = {idx % 6}
+              idx = {idx % 5}
               $id={note.$id}
               content={note.content}
               title={note.title}

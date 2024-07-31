@@ -10,4 +10,4 @@ function Search({className, setSearch, searchContent}) {
   )
 }
 
-export default Search
+export default Search;
