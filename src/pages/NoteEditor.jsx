@@ -19,6 +19,10 @@ function NoteEditor() {
   useEffect(() => {
     if (url) {
       const note = notes.filter((note) => note.$id === url);
+
+      if(note.length == 0) {
+        navigate("/page-not-found")
+      }
       setTitle(note[0].title);
       setContent(note[0].content);
     }
