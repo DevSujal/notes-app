@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { toggleSearch } from "../Store/features/searchSlice";
 
 function Header({ className }) {
   const userData = useSelector((state) => state.authReducer.userData);
@@ -39,25 +40,38 @@ function Header({ className }) {
       auth: status,
     },
   ];
+
+  const dispatch = useDispatch();
   return (
     <>
-    <div className="h-14 bg-black/70"></div>
+      <div className="h-14 bg-black/70"></div>
       <div
         className={`w-full fixed flex sm:flex-row text-white h-14 p-3 justify-between bg-black/50 items-center ${className}`}
       >
         <h1>Hi, {userData?.name.toUpperCase()}</h1>
-        <button
-          onClick={() =>
-            setIsMenuOpen((prev) => {
-              return !prev;
-            })
-          }
+        <div
           className={`sm:hidden text-xl z-20 absolute ${
             isMenuOpen ? "right-40" : "right-6"
-          } transition-all bg-black/50 px-2 py-1 rounded`}
+          } transition-all gap-2 flex px-2 py-1 rounded`}
         >
-          ☰
-        </button>
+          <span
+            onClick={() => {
+              dispatch(toggleSearch());
+            }}
+            className="text-2xl rounded-full cursor-pointer p-2"
+          >
+            🔍
+          </span>
+          <button
+            onClick={() =>
+              setIsMenuOpen((prev) => {
+                return !prev;
+              })
+            }
+          >
+            ☰
+          </button>
+        </div>
         {isMenuOpen && (
           <div
             onClick={() => setIsMenuOpen(false)}
