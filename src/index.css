@@ -2,3 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --base-color: #212529;
+  --secondary-color: #343a40;
+}
+
+.base-color {
+  background-color: var(--base-color);
+}
+
+.secondary-color {
+  background-color: var(--secondary-color);
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

@@ -10,7 +10,7 @@ function App() {
   }, [])
 
   return (
-    <Container>
+    <Container className={"w-full h-full"}>
       <Header/>
       <Outlet />
     </Container> 

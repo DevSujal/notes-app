@@ -5,12 +5,13 @@ import { deleteNote } from "../Store/features/notesSlice";
 import Swal from "sweetalert2";
 import database from "../app write services/database.service";
 import { useLongPress } from "use-long-press";
-import images from "./images.js";
-function Note({ $id, title, content, className, date, idx }) {
+import images from "../helper/images.js";
+function Note({ $id, title, content, className, date, bgColor }) {
   const dispatch = useDispatch();
   const callback = useCallback(() => {
     remove();
   }, []);
+
   const bind = useLongPress(callback, {
     filterEvents: () => true,
     threshold: 500,
@@ -48,7 +49,7 @@ function Note({ $id, title, content, className, date, idx }) {
     <div
       {...bind()}
       style={{
-        background: `url(${images[idx]})`,
+        background: `${bgColor}`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% auto",
         width: "100%",
@@ -61,10 +62,10 @@ function Note({ $id, title, content, className, date, idx }) {
           <h2 className="sm:text-4xl text-xl whitespace-nowrap overflow-hidden text-ellipsis font-bold">
             {title}
           </h2>
-          <h5 className="ml-1 whitespace-nowrap overflow-hidden text-ellipsis text-sm sm:text-lg text-white">
+          <h5 className="ml-1 whitespace-nowrap overflow-hidden text-ellipsis text-sm sm:text-lg ">
             {content}
           </h5>
-          <h5 className="ml-1 whitespace-nowrap overflow-hidden text-ellipsis text-sm sm:text-lg text-white">
+          <h5 className="ml-1 whitespace-nowrap overflow-hidden text-ellipsis text-sm sm:text-lg">
             {date ? date : Date(Date.now()).substring(4, 24)}
           </h5>
         </div>

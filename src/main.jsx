@@ -82,4 +82,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       router={router}
     />
   </Provider>
-);
+)

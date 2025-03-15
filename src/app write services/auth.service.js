@@ -8,8 +8,7 @@ export class Auth {
   constructor() {
     this.client
       .setEndpoint(conf.appWriteUrl)
-      .setProject(conf.appWriteProjectId);
-
+      .setProject(conf.appWriteProjectId);      
     this.account = new Account(this.client);
   }
 
@@ -32,6 +31,7 @@ export class Auth {
 
   async login({ email, password }) {
     try {
+      console.log(this.account, "||", this.client)
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
       throw Error(`${error}`);

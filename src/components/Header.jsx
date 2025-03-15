@@ -44,9 +44,9 @@ function Header({ className }) {
   const dispatch = useDispatch();
   return (
     <>
-      <div className="h-14 bg-black/70"></div>
+      <div className="h-14 base-color"></div>
       <div
-        className={`w-full fixed flex sm:flex-row text-white h-14 p-3 justify-between bg-black/50 items-center ${className}`}
+        className={`w-full fixed flex sm:flex-row text-white h-14 p-3 justify-between base-color items-center ${className}`}
       >
         <h1>Hi, {userData?.name.toUpperCase()}</h1>
         <div

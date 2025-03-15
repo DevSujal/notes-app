@@ -7,7 +7,7 @@ import Loader from "./Loader";
 import Header from "./Header";
 import Logout from "./Logout";
 import UnAuthenticated from "./UnAuthenticated";
-import { getAllData } from "./getAllData";
+import { getAllData } from "../helper/getAllData";
 import Search from "./Search";
 import Notes from "./Notes";
 import Note from "./Note"

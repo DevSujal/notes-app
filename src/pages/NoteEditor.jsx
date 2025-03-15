@@ -6,12 +6,15 @@ import {
   updateNote as update,
 } from "../Store/features/notesSlice";
 import database from "../app write services/database.service";
-import { TextArea } from "../components";
+import { Button, TextArea } from "../components";
+import { generateNote } from "../helper/gemini";
+import { Loader2 } from "lucide-react";
 
 function NoteEditor() {
   const { url } = useParams();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState("");
   const userData = useSelector((state) => state.authReducer.userData);
   const notes = useSelector((state) => state.noteReducer.notes);
   const navigate = useNavigate();
@@ -20,8 +23,8 @@ function NoteEditor() {
     if (url) {
       const note = notes.filter((note) => note.$id === url);
 
-      if(note.length == 0) {
-        navigate("/page-not-found")
+      if (note.length == 0) {
+        navigate("/page-not-found");
       }
       setTitle(note[0].title);
       setContent(note[0].content);
@@ -83,8 +86,21 @@ function NoteEditor() {
     }
   };
 
+  const generate = async () => {
+    try {
+      setLoading(true);
+      const newContent = await generateNote(content);
+      setContent(newContent);
+    } catch (error) {
+      console.log(error);
+      setContent(content);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="w-full h-full flex flex-col flex-grow bg-transparent">
+    <div className="w-full h-screen flex flex-col flex-grow bg-transparent">
       <TextArea
         name="title"
         title={title}
@@ -96,17 +112,26 @@ function NoteEditor() {
         className="w-full text-xl font-semibold text-white py-4 px-2 bg-black/70"
         id="title"
       />
-      <TextArea
-        name="content"
-        title={title}
-        setTitle={setTitle}
-        content={content}
-        setContent={setContent}
-        updateData={updateData}
-        placeholder="Enter your notes here..."
-        className="w-full h-full text-white py-4 px-2 flex-grow  bg-black/70"
-        id="content"
-      />
+      <div className="h-full w-full relative">
+        <Button
+          onClick={generate}
+          style={{ background: "#0A0A0D" }}
+          className="w-fit absolute top-1 right-5 rounded cursor-pointer border p-2 border-solid border-white"
+        >
+          {loading ? <Loader2 className="animate-spin" /> : "💡 enhance"}
+        </Button>
+        <TextArea
+          name="content"
+          title={title}
+          setTitle={setTitle}
+          content={content}
+          setContent={setContent}
+          updateData={updateData}
+          placeholder="Enter your notes here..."
+          className="w-full hide-scrollbar h-full text-white py-4 px-2 flex-grow  bg-black/70"
+          id="content"
+        />
+      </div>
     </div>
   );
 }
