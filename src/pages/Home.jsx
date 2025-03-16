@@ -28,7 +28,7 @@ function Home() {
     );
   } else {
     return (
-      <div className="w-full h-full base-color flex flex-col justify-center items-center">
+      <div className="w-full h-screen base-color flex flex-col justify-center items-center">
         <img className="max-w-96" src={image} />
         <p> <strong> create your first note! </strong></p>
       </div>
