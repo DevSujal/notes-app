@@ -7,8 +7,8 @@ import {
 } from "../Store/features/notesSlice";
 import database from "../app write services/database.service";
 import { Button, TextArea } from "../components";
-import { generateNote } from "../helper/gemini";
 import { Loader2 } from "lucide-react";
+import auth from "../app write services/auth.service";
 
 function NoteEditor() {
   const { url } = useParams();
@@ -89,7 +89,7 @@ function NoteEditor() {
   const generate = async () => {
     try {
       setLoading(true);
-      const newContent = await generateNote(content);
+      const newContent = await auth.generateEnhancedNote(content)
       setContent(newContent);
     } catch (error) {
       console.log(error);
