@@ -38,7 +38,7 @@ function Login() {
       }
 
       dispatch(addNote(documents));
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       setErr(error?.message);
       await auth.logout();
@@ -52,7 +52,7 @@ function Login() {
   return loader ? (
     <Loader />
   ) : (
-    <div className="relative justify-center items-center flex flex-col gap-5 bg-black/10 text-white rounded w-3/12 min-w-80 py-6">
+    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-center items-center flex flex-col gap-5 bg-black/10 text-white rounded w-3/12 min-w-80 py-6">
       <h3 className=" text-red-600 text-center text-sm absolute -bottom-10">
         {err.split(":")[1]}
       </h3>

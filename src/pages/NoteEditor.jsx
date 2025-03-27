@@ -7,9 +7,10 @@ import {
 } from "../Store/features/notesSlice";
 import database from "../app write services/database.service";
 import { Button, TextArea } from "../components";
-import { Loader2 } from "lucide-react";
+import { Edit, Loader2 } from "lucide-react";
 import auth from "../app write services/auth.service";
-
+import EditorContainer from "../components/EditorContainer";
+import axios from "axios";
 function NoteEditor() {
   const { url } = useParams();
   const [title, setTitle] = useState("");
@@ -86,22 +87,9 @@ function NoteEditor() {
     }
   };
 
-  const generate = async () => {
-    try {
-      setLoading(true);
-      const newContent = await auth.generateEnhancedNote(content)
-      setContent(newContent);
-    } catch (error) {
-      console.log(error);
-      setContent(content);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="w-full h-screen flex flex-col flex-grow bg-transparent">
-      <TextArea
+      <EditorContainer
         name="title"
         title={title}
         setTitle={setTitle}
@@ -113,14 +101,7 @@ function NoteEditor() {
         id="title"
       />
       <div className="h-full w-full relative">
-        <Button
-          onClick={generate}
-          style={{ background: "#0A0A0D" }}
-          className="w-fit absolute top-1 right-5 rounded cursor-pointer border p-2 border-solid border-white"
-        >
-          {loading ? <Loader2 className="animate-spin" /> : "💡 enhance"}
-        </Button>
-        <TextArea
+        <EditorContainer
           name="content"
           title={title}
           setTitle={setTitle}

@@ -11,7 +11,7 @@ import { getAllData } from "../helper/getAllData";
 import Search from "./Search";
 import Notes from "./Notes";
 import Note from "./Note"
-import TextArea from "./TextArea";
+import TextArea from "./EditorContainer";
 export {
   Input,
   Button,

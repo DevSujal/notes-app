@@ -8,7 +8,14 @@ import {
   createHashRouter,
   createRoutesFromChildren,
 } from "react-router-dom";
-import { Home, Login, PagenotFound, Setting, Signup, NoteEditor } from "./pages";
+import {
+  Home,
+  Login,
+  PagenotFound,
+  Setting,
+  Signup,
+  NoteEditor,
+} from "./pages";
 import { Provider } from "react-redux";
 import { store } from "./Store/store.js";
 import {
@@ -17,10 +24,12 @@ import {
   UnAuthenticated,
   getAllData,
 } from "./components";
+import LandingPage from "./components/LandingPage.jsx";
 const router = createHashRouter(
   createRoutesFromChildren(
     <Route path="/" loader={getAllData} element={<App />}>
-      <Route path=""   element={<Home />} />
+      <Route path="" element={<LandingPage />} />
+      <Route path="home" element={<Home />} />
       <Route
         path="register"
         element={
@@ -61,12 +70,7 @@ const router = createHashRouter(
           </Authenticated>
         }
       />
-      <Route
-        path="*"
-        element={
-          <PagenotFound />
-        }
-      />
+      <Route path="*" element={<PagenotFound />} />
     </Route>
   )
 );
@@ -76,10 +80,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider
       fallbackElement={
         <div className="w-screen h-screen bg-black">
-          <Loader/>
+          <Loader />
         </div>
       }
       router={router}
     />
   </Provider>
-)
+);
