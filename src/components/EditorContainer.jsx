@@ -129,7 +129,7 @@ function EditorContainer({
         contentEditable={true}
         onInput={handleInput}
         suppressContentEditableWarning={true}
-        className={`min-h-[200px] ${
+        className={`min-h-[150px] ${
           id === "content" && "h-full"
         } p-4 bg-gray-800 rounded-lg font-mono overflow-scroll hide-scrollbar text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 ${
           id === "title" ? "text-xl font-bold" : ""
@@ -148,7 +148,6 @@ function EditorContainer({
     setiIsLoading(true);
     try {
       const response = await auth.generateEnhancedNote(content);
-      console.log(response);
       if (response) {
         setContent(response.substring(11, response.length - 3));
       }
